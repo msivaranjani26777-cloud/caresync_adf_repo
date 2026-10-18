@@ -139,7 +139,7 @@
 				"typeProperties": {
 					"notebookPath": "/Users/msivaranjani.26777@gmail.com/caresync-adb-repo/Landing_to_Bronze",
 					"baseParameters": {
-						" source_system": {
+						"source_system": {
 							"value": "@activity('Read data tables').output.firstRow.source_system",
 							"type": "Expression"
 						},
