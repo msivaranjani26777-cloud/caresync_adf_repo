@@ -5,8 +5,6 @@
 			{
 				"name": "read source tables list",
 				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -36,8 +34,6 @@
 			{
 				"name": "Ingest All tables",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "read source tables list",
@@ -52,6 +48,7 @@
 						"value": "@activity('read source tables list').output.value",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "ingest from source to silver",
@@ -143,7 +140,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "@update ctrl.audit_log\nset status='FAILED',end_time=SYSUTCDATETIME()\n where adf_run_id='@{pipeline().parameters.adf_run_id}' and table_id=@{item().table_id};",
+											"value": "update ctrl.audit_log\nset status='FAILED',end_time=SYSUTCDATETIME()\n where adf_run_id='@{pipeline().parameters.adf_run_id}' and table_id=@{item().table_id};",
 											"type": "Expression"
 										}
 									}
@@ -162,7 +159,7 @@
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "a2"
+				"defaultValue": "a3"
 			}
 		},
 		"variables": {

@@ -181,10 +181,10 @@
 					"notebookPath": "/Users/msivaranjani.26777@gmail.com/caresync-adb-repo/Bronze to silver",
 					"baseParameters": {
 						"source_table_name": {
-							"value": "@activity('Read data tables').output.firstRow.silver_table_name",
+							"value": "@activity('Read data tables').output.firstRow.silver_table_name\n",
 							"type": "Expression"
 						},
-						"landing_time_stamp": {
+						"landing_timestamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
 						}
@@ -196,7 +196,7 @@
 				}
 			},
 			{
-				"name": "update failed status",
+				"name": "update success status",
 				"type": "Script",
 				"dependsOn": [
 					{
@@ -223,7 +223,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "@update ctrl.audit_log\nset status='SUCCESS',end_time=SYSUTCDATETIME(),records_written=@{activity('bronze_to_silver').output.runoutput}\n where adf_run_id='@{pipeline().parameters.adf_run_id}' and table_id=@{pipeline().parameters.table_id};",
+								"value": "@concat(\n    'UPDATE ctrl.audit_log SET status = ''SUCCESS'', ',\n    'end_time = SYSUTCDATETIME(), ',\n    'records_written = ', string(activity('bronze_to_silver').output.runoutput),\n    ' WHERE adf_run_id = ''', pipeline().parameters.adf_run_id,\n    ''' AND table_id = ', string(pipeline().parameters.table_id),\n    ';'\n)",
 								"type": "Expression"
 							}
 						}
@@ -239,7 +239,7 @@
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "a2"
+				"defaultValue": "a3"
 			}
 		},
 		"variables": {
