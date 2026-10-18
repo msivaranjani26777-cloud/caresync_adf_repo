@@ -223,7 +223,7 @@
 						{
 							"type": "Query",
 							"text": {
-								"value": "@update ctrl.audit_log\nset status='FAILED',end_time=SYSUTCDATETIME()\n where adf_run_id='@{pipeline().parameters.adf_run_id}' and table_id=@{item().table_id};",
+								"value": "@update ctrl.audit_log\nset status='SUCCESS',end_time=SYSUTCDATETIME(),records_written=@{activity('bronze_to_silver').output.runoutput}\n where adf_run_id='@{pipeline().parameters.adf_run_id}' and table_id=@{pipeline().parameters.table_id};",
 								"type": "Expression"
 							}
 						}
@@ -239,7 +239,7 @@
 			},
 			"adf_run_id": {
 				"type": "string",
-				"defaultValue": "ad"
+				"defaultValue": "a2"
 			}
 		},
 		"variables": {
