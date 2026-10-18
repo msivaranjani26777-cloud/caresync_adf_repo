@@ -143,11 +143,11 @@
 							"value": "@activity('Read data tables').output.firstRow.source_system",
 							"type": "Expression"
 						},
-						" source_table_name": {
+						"source_table_name": {
 							"value": "@activity('Read data tables').output.firstRow.bronze_table_name",
 							"type": "Expression"
 						},
-						"landing_time-stamp": {
+						"landing_time_stamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
 						}
@@ -180,11 +180,11 @@
 				"typeProperties": {
 					"notebookPath": "/Users/msivaranjani.26777@gmail.com/caresync-adb-repo/Bronze to silver",
 					"baseParameters": {
-						" source_table_name": {
+						"source_table_name": {
 							"value": "@activity('Read data tables').output.firstRow.silver_table_name",
 							"type": "Expression"
 						},
-						"landing_time-stamp": {
+						"landing_time_stamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
 						}
