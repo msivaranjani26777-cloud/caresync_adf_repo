@@ -245,6 +245,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Set start_time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
