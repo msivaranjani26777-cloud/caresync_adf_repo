@@ -80,6 +80,10 @@
 						"landing_time_stamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
+						},
+						"source_file_format": {
+							"value": "@coalesce(activity('Read data tables').output.firstRow.source_file_format,'')",
+							"type": "Expression"
 						}
 					}
 				},
